@@ -1,0 +1,110 @@
+.filter-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-lg);
+  height: 100%;
+  min-height: 0;
+}
+
+.filter-panel-fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-lg);
+  flex: 1 1 auto;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.filter-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: var(--sp-sm);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.filter-panel-done {
+  position: sticky;
+  bottom: 0;
+  background: var(--color-surface);
+  padding-top: var(--sp-md);
+  margin-top: auto;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xs);
+}
+
+.filter-group > label {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+.filter-group select,
+.filter-group input[type='text'],
+.filter-group input[type='number'] {
+  width: 100%;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.75rem;
+  font-size: var(--fs-sm);
+  color: var(--color-ink);
+  background: var(--color-surface);
+}
+
+.filter-group select:focus-visible,
+.filter-group input:focus-visible {
+  border-color: var(--color-gold);
+}
+
+.filter-price-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  color: var(--color-ink-faint);
+}
+
+.filter-price-row input {
+  min-width: 0;
+}
+
+.filter-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xs);
+}
+
+.filter-radio {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  font-size: var(--fs-sm);
+  color: var(--color-ink);
+}
+
+.filter-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-sm);
+  padding-top: var(--sp-sm);
+  border-top: 1px solid var(--color-line);
+}
+
+.filter-clear {
+  background: none;
+  border: none;
+  font-size: var(--fs-sm);
+  color: var(--color-ink-soft);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  align-self: center;
+}
+
+.filter-clear:hover {
+  color: var(--color-ink);
+}
