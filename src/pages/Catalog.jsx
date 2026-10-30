@@ -8,6 +8,7 @@ import WatchCardSkeleton from '../components/WatchCardSkeleton.jsx';
 import FilterPanel, { buildFilterOptions } from '../components/FilterPanel.jsx';
 import PageHero from '../components/PageHero.jsx';
 import heroImage from '../assets/hero-2.jpg';
+import Sheet from '../components/ui/Sheet.jsx';
 import './Catalog.css';
 
 const EMPTY_FILTERS = {
@@ -139,7 +140,7 @@ export default function Catalog() {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M7 12h10M10 18h4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
               {t('search.openFilters')}
             </button>
-            <p className="catalog-count">{loading ? '' : t('search.resultsCount', { count: filtered.length })}</p>
+            <p className="catalog-count" role="status" aria-live="polite">{loading ? '' : t('search.resultsCount', { count: filtered.length })}</p>
             <div className="catalog-sort">
               <label htmlFor="sort">{t('search.sort.label')}</label>
               <select id="sort" value={sort} onChange={(e) => handleSortChange(e.target.value)}>
@@ -174,15 +175,7 @@ export default function Catalog() {
         </div>
       </div>
 
-      {mobileFiltersOpen && (
-        <div className="catalog-drawer-backdrop" onClick={() => setMobileFiltersOpen(false)}>
-          <div className="catalog-drawer" onClick={(e) => e.stopPropagation()}>
-            <div className="catalog-drawer-header">
-              <h3>{t('search.filters.title')}</h3>
-              <button type="button" onClick={() => setMobileFiltersOpen(false)} aria-label="Close">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
-              </button>
-            </div>
+      <Sheet open={mobileFiltersOpen} onClose={() => setMobileFiltersOpen(false)} title={t('search.filters.title')} closeLabel={locale === 'en' ? 'Close filters' : 'Cerrar filtros'}>
             <FilterPanel
               filters={filters}
               onChange={handleFiltersChange}
@@ -192,9 +185,7 @@ export default function Catalog() {
               resultsCount={filtered.length}
               onDone={() => setMobileFiltersOpen(false)}
             />
-          </div>
-        </div>
-      )}
+      </Sheet>
     </div>
   );
 }

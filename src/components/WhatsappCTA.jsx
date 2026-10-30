@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useI18n, resolveBilingual } from '../lib/i18n/index.jsx';
+import { useI18n } from '../lib/i18n/index.jsx';
 import { fetchCompany, buildWhatsappUrl } from '../lib/company.js';
 
 export default function WhatsappCTA({ watch, className = 'btn btn-whatsapp btn-block' }) {
-  const { t, locale } = useI18n();
+  const { t } = useI18n();
   const [phone, setPhone] = useState(null);
 
   useEffect(() => {

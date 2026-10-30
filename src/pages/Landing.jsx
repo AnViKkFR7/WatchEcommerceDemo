@@ -4,7 +4,7 @@ import { useI18n } from '../lib/i18n/index.jsx';
 import { fetchWatches } from '../lib/watches.js';
 import WatchCard from '../components/WatchCard.jsx';
 import WatchCardSkeleton from '../components/WatchCardSkeleton.jsx';
-import BrandTile from '../components/BrandTile.jsx';
+import BrandExplorer from '../components/BrandExplorer.jsx';
 import rolexImage from '../assets/rolex-detail.webp';
 import omegaImage from '../assets/omega-detail.webp';
 import tagheuerImage from '../assets/tagheuer-detail.webp';
@@ -13,6 +13,8 @@ import cartierImage from '../assets/cartier-detail.webp';
 import iwcImage from '../assets/iwc-detail.webp';
 import breitlingImage from '../assets/breitling-detail.webp';
 import tissotImage from '../assets/tissot-detail.webp';
+import Reveal from '../components/ui/Reveal.jsx';
+import atelierImage from '../assets/hero-2.jpg';
 import './Landing.css';
 
 const BRANDS = [
@@ -53,16 +55,17 @@ function useFeaturedWatches() {
 
 function Testimonials({ items }) {
   const scrollerRef = useRef(null);
+  const { t } = useI18n();
 
   function scrollBy(dir) {
     const el = scrollerRef.current;
     if (!el) return;
-    el.scrollBy({ left: dir * (el.clientWidth * 0.8), behavior: 'smooth' });
+    el.scrollBy({ left: dir * (el.clientWidth * 0.8), behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
   }
 
   return (
     <div className="testimonials-wrap">
-      <div className="testimonials-scroller" ref={scrollerRef}>
+      <div className="testimonials-scroller" ref={scrollerRef} tabIndex={0} role="region" aria-label={t('testimonials.title')}>
         {items.map((it, i) => (
           <figure className="testimonial-card" key={i}>
             <div className="testimonial-stars" aria-hidden="true">
@@ -105,33 +108,30 @@ export default function Landing() {
   return (
     <>
       <section className="hero">
-        <div className="hero-media">
-          <img
-            src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=1800&q=75&auto=format&fit=crop"
-            alt=""
-            aria-hidden="true"
-          />
-        </div>
-        <div className="container hero-content">
-          <p className="eyebrow hero-eyebrow">{t('hero.eyebrow')}</p>
-          <h1 className="hero-title">
-            {t('hero.title.line1')} <em>{t('hero.title.highlight')}</em>
-            <br />
-            {t('hero.title.line2')}
-          </h1>
-          <p className="hero-subtitle">{t('hero.subtitle')}</p>
-          <div className="hero-actions">
-            <Link to="/tienda" className="btn btn-primary">{t('hero.cta.primary')}</Link>
-            <a href="#featured" className="btn btn-outline-dark">{t('hero.cta.secondary')}</a>
+        <div className="hero-layout">
+          <div className="hero-content">
+            <h1 className="hero-title">
+              <span>{t('hero.title.line1')} <em>{t('hero.title.highlight')}</em></span>
+              <span className="hero-title-ending">{t('hero.title.line2')}</span>
+            </h1>
+            <p className="hero-subtitle">{t('hero.subtitle')}</p>
+            <div className="hero-actions">
+              <Link to="/tienda" className="btn btn-primary">{t('hero.cta.primary')}<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" strokeWidth="1.5" /></svg></Link>
+              <a href="#featured" className="text-link" onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('featured')?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+              }}>{t('hero.cta.secondary')}</a>
+            </div>
+          </div>
+          <div className="hero-media">
+            <img src={rolexImage} alt="" aria-hidden="true" fetchPriority="high" width="1000" height="1250" />
           </div>
         </div>
-        <div className="hero-badge">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 2 4 5v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V5l-8-3ZM9 12l2 2 4-4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          <div>
-            <strong>{t('hero.badge.title')}</strong>
-            <span>{t('hero.badge.subtitle')}</span>
+        <div className="hero-foot">
+          <p className="eyebrow hero-eyebrow">{t('hero.eyebrow')}</p>
+          <div className="hero-badge">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V5l-8-3ZM9 12l2 2 4-4" stroke="currentColor" strokeWidth="1.2" /></svg>
+            <div><strong>{t('hero.badge.title')}</strong><span>{t('hero.badge.subtitle')}</span></div>
           </div>
         </div>
       </section>
@@ -152,7 +152,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="section" id="featured">
+      <section className="section featured-section" id="featured">
         <div className="container">
           <div className="section-heading">
             <div>
@@ -167,12 +167,13 @@ export default function Landing() {
           <div className="watch-grid">
             {loading
               ? Array.from({ length: 4 }).map((_, i) => <WatchCardSkeleton key={i} />)
-              : watches.map((w) => <WatchCard watch={w} key={w.id} />)}
+              : watches.map((w) => <Reveal key={w.id}><WatchCard watch={w} /></Reveal>)}
           </div>
         </div>
       </section>
 
       <section className="callout">
+        <div className="callout-media"><img src={atelierImage} alt="" loading="lazy" width="1536" height="864" /></div>
         <div className="container callout-inner">
           <p className="eyebrow">{t('callout.eyebrow')}</p>
           <h2>{t('callout.title')}</h2>
@@ -189,11 +190,7 @@ export default function Landing() {
               <h2>{t('brands.title')}</h2>
             </div>
           </div>
-          <div className="brand-grid">
-            {BRANDS.map((b) => (
-              <BrandTile key={b.name} {...b} />
-            ))}
-          </div>
+          <BrandExplorer brands={BRANDS} />
         </div>
       </section>
 

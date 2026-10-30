@@ -14,7 +14,7 @@ export default function WatchCard({ watch }) {
     <Link to={`/reloj/${watch.id}`} className="watch-card">
       <div className="watch-card-media">
         {watch.coverUrl ? (
-          <img src={watch.coverUrl} alt={watch.coverAlt} loading="lazy" />
+          <img src={watch.coverUrl} alt={watch.coverAlt} loading="lazy" width="800" height="1000" />
         ) : (
           <div className="watch-card-media-empty" />
         )}

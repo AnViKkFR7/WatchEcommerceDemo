@@ -1,0 +1,10 @@
+.sheet { border: 0; padding: 0; margin: 0 0 0 auto; width: min(440px, 100%); max-width: 100%; height: 100dvh; max-height: 100dvh; background: var(--color-surface); color: var(--color-ink); overflow: auto; overscroll-behavior: contain; }
+.sheet::backdrop { background: #0c211bc7; }
+.panel { padding: var(--sp-lg); min-height: 100%; display: flex; flex-direction: column; }
+.header { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-md); margin-bottom: var(--sp-xl); }
+.header h2 { font-size: var(--fs-xl); }
+.header button { display: grid; place-items: center; width: 44px; height: 44px; border: 0; background: transparent; }
+@media (prefers-reduced-motion: no-preference) {
+  .sheet[open] { transition: opacity var(--t-fast) var(--ease-out), transform var(--t-fast) var(--ease-out); }
+  @starting-style { .sheet[open] { opacity: 0; transform: translateX(24px); } }
+}

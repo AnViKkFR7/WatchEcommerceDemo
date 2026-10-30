@@ -1,114 +1,19 @@
-.watch-card {
-  display: block;
-  background: var(--color-surface);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: var(--shadow-card);
-  transition: box-shadow var(--duration-base) var(--ease-out), transform var(--duration-base) var(--ease-out);
-}
-
-.watch-card:hover,
-.watch-card:focus-visible {
-  box-shadow: var(--shadow-card-hover);
-  transform: translateY(-4px);
-}
-
-.watch-card-media {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  background: var(--color-surface-alt);
-}
-
-.watch-card-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--duration-slow) var(--ease-out);
-}
-
-.watch-card:hover .watch-card-media img,
-.watch-card:focus-visible .watch-card-media img {
-  transform: scale(1.08);
-}
-
-.watch-card-media-empty {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, var(--color-surface-alt), var(--color-line));
-}
-
-.watch-card-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: var(--sp-md);
-  background: linear-gradient(180deg, rgba(11, 11, 13, 0) 55%, rgba(11, 11, 13, 0.55) 100%);
-  opacity: 0;
-  transition: opacity var(--duration-base) var(--ease-out);
-}
-
-.watch-card:hover .watch-card-overlay,
-.watch-card:focus-visible .watch-card-overlay {
-  opacity: 1;
-}
-
-.watch-card-view {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-2xs);
-  color: var(--color-paper);
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  transform: translateY(6px);
-  transition: transform var(--duration-base) var(--ease-out);
-}
-
-.watch-card:hover .watch-card-view,
-.watch-card:focus-visible .watch-card-view {
-  transform: translateY(0);
-}
-
-.watch-card-badges {
-  position: absolute;
-  top: var(--sp-sm);
-  left: var(--sp-sm);
-  display: flex;
-  gap: var(--sp-2xs);
-}
-
-.watch-card-body {
-  padding: var(--sp-md) var(--sp-md) var(--sp-lg);
-}
-
-.watch-card-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--sp-xs);
-  margin-bottom: var(--sp-2xs);
-}
-
-.watch-card-brand {
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-ink-soft);
-}
-
-.watch-card-title {
-  font-size: var(--fs-md);
-  margin-bottom: var(--sp-xs);
-  color: var(--color-ink);
-}
-
-.watch-card-price {
-  font-family: var(--font-display);
-  font-size: var(--fs-lg);
-  font-weight: 600;
-  color: var(--color-gold-deep);
+.watch-card { display: block; min-width: 0; }
+.watch-card-media { position: relative; overflow: hidden; aspect-ratio: 4/5; background: var(--color-surface-alt); }
+.watch-card-media > img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--t-slow) var(--ease-out); }
+.watch-card-media-empty { width: 100%; height: 100%; background: var(--color-surface-alt); }
+.watch-card-overlay { position: absolute; left: var(--sp-sm); right: var(--sp-sm); bottom: var(--sp-sm); opacity: 0; transform: translateY(8px); transition: transform var(--t-fast) var(--ease-out), opacity var(--t-fast); pointer-events: none; }
+.watch-card-view { display: flex; justify-content: space-between; gap: var(--sp-xs); background: var(--color-surface); padding: var(--sp-md); font-size: var(--fs-xs); }
+.watch-card-badges { position: absolute; top: var(--sp-sm); left: var(--sp-sm); }
+.watch-card-badges .badge { background: var(--color-surface); font-size: var(--fs-xs); }
+.watch-card-body { padding-block: var(--sp-lg); }
+.watch-card-heading { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--sp-xs); align-items: baseline; margin-bottom: var(--sp-xs); }
+.watch-card-brand { font-size: var(--fs-xs); font-weight: 500; letter-spacing: .07em; text-transform: uppercase; }
+.watch-card-heading .badge { font-size: var(--fs-xs); }
+.watch-card-title { font-size: clamp(1.15rem,1.6vw,1.55rem); line-height: 1.25; text-wrap: pretty; }
+.watch-card-price { margin-top: var(--sp-md); font-size: var(--fs-sm); font-variant-numeric: tabular-nums; }
+.watch-card:focus-visible .watch-card-overlay { opacity: 1; transform: none; }
+@media (hover:hover) and (pointer:fine) {
+ .watch-card:hover .watch-card-media > img { transform: scale(1.045); }
+ .watch-card:hover .watch-card-overlay { opacity: 1; transform: none; }
 }

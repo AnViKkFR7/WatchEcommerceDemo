@@ -7,22 +7,22 @@ import Catalog from './pages/Catalog.jsx';
 import ProductDetail from './pages/ProductDetail.jsx';
 import About from './pages/About.jsx';
 import NotFound from './pages/NotFound.jsx';
+import { useI18n } from './lib/i18n/index.jsx';
 import { trackPageview } from './lib/analytics.js';
 
 function usePageviewTracking() {
   const location = useLocation();
   useEffect(() => {
     trackPageview(location.pathname);
-    // Jump to top immediately on every route change (no smooth-scroll
-    // animation, no hash-anchor exception) — the browser's own scroll
-    // restoration is disabled below so this is the only thing moving the
-    // viewport on navigation.
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
+    if (location.hash) {
+      requestAnimationFrame(() => document.getElementById(location.hash.slice(1))?.scrollIntoView({ behavior: 'instant' }));
+    } else window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [location.pathname, location.hash]);
 }
 
 export default function App() {
   usePageviewTracking();
+  const { locale } = useI18n();
 
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
@@ -32,8 +32,9 @@ export default function App() {
 
   return (
     <>
+      <a className="skip-link" href="#main-content">{locale === 'en' ? 'Skip to content' : 'Saltar al contenido'}</a>
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/tienda" element={<Catalog />} />

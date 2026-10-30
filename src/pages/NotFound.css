@@ -1,5 +1,5 @@
 .not-found {
-  min-height: 70vh;
+  min-height: 70dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +14,7 @@
   font-size: var(--fs-sm);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--color-gold-deep);
   margin-bottom: var(--sp-md);
 }
 

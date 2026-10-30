@@ -1,251 +1,44 @@
-/* --- Story split ------------------------------------------------------- */
-
-.about-story {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: var(--sp-3xl);
-  align-items: center;
+.about-story { display: grid; gap: var(--sp-2xl); align-items: center; }
+.about-story-text { display: flex; flex-direction: column; }
+.about-story-text .eyebrow { order: -1; margin-bottom: var(--sp-lg); }
+.about-story-text h2 { font-size: var(--fs-2xl); margin-bottom: var(--sp-xl); }
+.about-story-text p { color: var(--color-ink-soft); max-width: 55ch; margin-bottom: var(--sp-lg); }
+.about-stats { display: flex; flex-wrap: wrap; gap: var(--sp-xl); margin-top: var(--sp-xl); }
+.about-stat strong { display: block; font-family: var(--font-display); font-size: var(--fs-xl); }
+.about-stat span { display: block; font-size: var(--fs-xs); color: var(--color-ink-soft); margin-top: var(--sp-xs); }
+.about-story-media { overflow: hidden; aspect-ratio: 4/5; }
+.about-story-media img { width: 100%; height: 100%; object-fit: cover; }
+.about-process-section { background: var(--color-bg); color: var(--color-paper); }
+.about-process-section .eyebrow { color: var(--color-paper-soft); }
+.about-process-subtitle { max-width: 40ch; color: var(--color-paper-soft); font-size: var(--fs-sm); }
+.about-process-grid { display: grid; gap: var(--sp-2xl); }
+.about-process-card { border-top: 1px solid var(--color-line-dark); padding-top: var(--sp-lg); }
+.about-process-number { display: block; font-family: var(--font-display); font-size: var(--fs-2xl); color: var(--color-gold-soft); margin-bottom: var(--sp-lg); }
+.about-process-card h3 { font-size: var(--fs-lg); margin-bottom: var(--sp-md); }
+.about-process-card p { color: var(--color-paper-soft); font-size: var(--fs-sm); }
+.about-values-grid { display: grid; gap: var(--sp-2xl); }
+.about-value-card { padding-top: var(--sp-lg); border-top: 1px solid var(--color-line); }
+.about-value-card h3 { font-size: var(--fs-xl); margin-bottom: var(--sp-lg); }
+.about-value-card p { color: var(--color-ink-soft); max-width: 50ch; }
+.about-faq-section { background: var(--color-surface-alt); }
+.about-faq-container { display: grid; gap: var(--sp-xl); }
+.faq-card { border-bottom: 1px solid var(--color-line); padding-block: var(--sp-lg); }
+.faq-question { display: flex; align-items: center; gap: var(--sp-lg); width: 100%; min-height: 44px; text-align: left; padding: 0; background: transparent; border: 0; }
+.faq-number { font-size: var(--fs-xs); color: var(--color-ink-soft); }
+.faq-question-text { flex: 1; font: 400 var(--fs-lg)/1.4 var(--font-display); }
+.faq-chevron { flex: 0 0 auto; transition: transform var(--t-fast) var(--ease-out); }
+.faq-card.is-open .faq-chevron { transform: rotate(180deg); }
+.faq-answer { display: none; }
+.faq-card.is-open .faq-answer { display: block; margin-top: var(--sp-lg); padding-left: var(--sp-2xl); }
+.faq-answer p { color: var(--color-ink-soft); max-width: 60ch; }
+@media (min-width: 768px) { .about-process-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } .about-values-grid { grid-template-columns: repeat(3,minmax(0,1fr)); } }
+@media (min-width: 1024px) {
+ .about-story { grid-template-columns: 1fr 1fr; gap: var(--sp-4xl); }
+ .about-story-media { max-height: 650px; }
+ .about-process-grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
+ .about-faq-container { grid-template-columns: .8fr 1.2fr; gap: var(--sp-3xl); }
 }
-
-.about-story-text h2 {
-  font-size: var(--fs-2xl);
-  margin-block: var(--sp-sm) var(--sp-md);
-}
-
-.about-story-text p {
-  color: var(--color-ink-soft);
-  line-height: 1.75;
-  margin-bottom: var(--sp-md);
-  max-width: 52ch;
-}
-
-.about-stats {
-  display: flex;
-  gap: var(--sp-xl);
-  margin-top: var(--sp-lg);
-  padding-top: var(--sp-lg);
-  border-top: 1px solid var(--color-line);
-}
-
-.about-stat strong {
-  display: block;
-  font-family: var(--font-display);
-  font-size: var(--fs-xl);
-  color: var(--color-gold-deep);
-}
-
-.about-stat span {
-  display: block;
-  font-size: var(--fs-xs);
-  color: var(--color-ink-faint);
-  margin-top: var(--sp-2xs);
-}
-
-.about-story-media {
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  aspect-ratio: 4 / 5;
-}
-
-.about-story-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* --- Process steps -------------------------------------------------------- */
-
-.about-process-section {
-  background: var(--color-bg);
-  color: var(--color-paper);
-}
-
-.about-process-heading {
-  align-items: flex-end;
-}
-
-.about-process-heading h2 {
-  color: var(--color-paper);
-}
-
-.about-process-subtitle {
-  color: rgba(245, 241, 234, 0.65);
-  max-width: 34ch;
-  font-size: var(--fs-sm);
-}
-
-.about-process-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--sp-xl);
-}
-
-.about-process-card {
-  position: relative;
-  padding-top: var(--sp-lg);
-  border-top: 1px solid var(--color-line-dark);
-}
-
-.about-process-number {
-  display: block;
-  font-family: var(--font-display);
-  font-size: var(--fs-2xl);
-  color: var(--color-gold);
-  margin-bottom: var(--sp-md);
-}
-
-.about-process-card h3 {
-  color: var(--color-paper);
-  font-size: var(--fs-md);
-  margin-bottom: var(--sp-sm);
-}
-
-.about-process-card p {
-  color: rgba(245, 241, 234, 0.65);
-  font-size: var(--fs-sm);
-  line-height: 1.65;
-}
-
-/* --- Values -------------------------------------------------------------- */
-
-.about-values-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--sp-lg);
-}
-
-.about-value-card {
-  background: var(--color-surface-alt);
-  border-radius: var(--radius-md);
-  padding: var(--sp-xl);
-  transition: transform var(--duration-base) var(--ease-out), box-shadow var(--duration-base) var(--ease-out);
-}
-
-.about-value-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-card);
-}
-
-.about-value-card h3 {
-  font-size: var(--fs-md);
-  margin-bottom: var(--sp-sm);
-}
-
-.about-value-card p {
-  color: var(--color-ink-soft);
-  line-height: 1.6;
-}
-
-/* --- FAQ, numbered cards --------------------------------------------------- */
-
-.about-faq-section {
-  background: var(--color-surface-alt);
-}
-
-.about-faq-container {
-  max-width: 920px;
-}
-
-.faq-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--sp-md);
-}
-
-.faq-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-md);
-  padding: var(--sp-lg);
-  transition: border-color var(--duration-fast) var(--ease-out);
-}
-
-.faq-card:hover {
-  border-color: var(--color-gold-soft);
-}
-
-.faq-question {
-  width: 100%;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: start;
-  gap: var(--sp-sm);
-  background: none;
-  border: none;
-  text-align: left;
-}
-
-.faq-number {
-  font-family: var(--font-display);
-  font-size: var(--fs-lg);
-  color: var(--color-gold);
-  line-height: 1;
-}
-
-.faq-question-text {
-  font-family: var(--font-display);
-  font-size: var(--fs-md);
-  color: var(--color-ink);
-  line-height: 1.3;
-}
-
-.faq-chevron {
-  flex-shrink: 0;
-  color: var(--color-ink-faint);
-  margin-top: 4px;
-  transition: transform var(--duration-fast) var(--ease-out);
-}
-
-.faq-card.is-open .faq-chevron {
-  transform: rotate(180deg);
-  color: var(--color-gold);
-}
-
-.faq-answer {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows var(--duration-base) var(--ease-out);
-  margin-left: calc(var(--fs-lg) + var(--sp-sm));
-}
-
-.faq-answer p {
-  overflow: hidden;
-  min-height: 0;
-  color: var(--color-ink-soft);
-  line-height: 1.65;
-  font-size: var(--fs-sm);
-}
-
-.faq-card.is-open .faq-answer {
-  grid-template-rows: 1fr;
-  margin-top: var(--sp-sm);
-}
-
-@media (max-width: 900px) {
-  .about-story {
-    grid-template-columns: 1fr;
-  }
-  .about-story-media {
-    order: -1;
-    aspect-ratio: 16 / 10;
-  }
-  .about-process-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .about-values-grid {
-    grid-template-columns: 1fr;
-  }
-  .faq-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 560px) {
-  .about-process-grid {
-    grid-template-columns: 1fr;
-  }
-  .about-stats {
-    flex-wrap: wrap;
-    gap: var(--sp-lg);
-  }
+@media (prefers-reduced-motion: no-preference) {
+ .faq-card.is-open .faq-answer { animation: answer-in var(--t-fast) var(--ease-out); }
+ @keyframes answer-in { from { opacity: .4; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
 }

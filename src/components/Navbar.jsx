@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useI18n } from '../lib/i18n/index.jsx';
 import { fetchCompany, buildWhatsappUrl } from '../lib/company.js';
+import Sheet from './ui/Sheet.jsx';
 import './Navbar.css';
 
 const LANGUAGES = [
@@ -93,13 +94,6 @@ export default function Navbar() {
     setOpen(false);
   }, [locale]);
 
-  useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [open]);
-
   const whatsappUrl = buildWhatsappUrl(
     phone,
     locale === 'en' ? 'Hi! I have a question about your watches.' : '¡Hola! Tengo una consulta sobre vuestros relojes.'
@@ -155,7 +149,7 @@ export default function Navbar() {
           <button
             type="button"
             className="navbar-burger"
-            aria-label="Menú"
+            aria-label={locale === 'en' ? 'Menu' : 'Menú'}
             aria-expanded={open}
             onClick={() => setOpen((o) => !o)}
           >
@@ -166,22 +160,8 @@ export default function Navbar() {
         </div>
       </div>
 
-      {open && (
-        <div className="navbar-mobile">
-          <div className="container navbar-mobile-top">
-            <Link to="/" className="navbar-logo" aria-label="TimeCraft — home" onClick={() => setOpen(false)}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.4" />
-                <path d="M12 7v5l3.2 2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              <span>Time<em>Craft</em></span>
-            </Link>
-            <button type="button" className="navbar-mobile-close" onClick={() => setOpen(false)} aria-label="Close">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
-            </button>
-          </div>
-
-          <nav className="container navbar-mobile-links" aria-label="Principal móvil">
+      <Sheet open={open} onClose={() => setOpen(false)} title="TimeCraft" closeLabel={locale === 'en' ? 'Close menu' : 'Cerrar menú'}>
+          <nav className="navbar-mobile-links" aria-label="Principal móvil">
             {links.map((l, i) => (
               <NavLink
                 key={l.to}
@@ -196,7 +176,7 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <div className="container navbar-mobile-bottom">
+          <div className="navbar-mobile-bottom">
             <LanguageSwitcher variant="mobile" />
             <a href={whatsappUrl} target="_blank" rel="noreferrer" className="navbar-cta navbar-cta-mobile" data-track-event="whatsapp_click">
               <span className="navbar-cta-icon">
@@ -207,8 +187,7 @@ export default function Navbar() {
               {t('nav.cta')}
             </a>
           </div>
-        </div>
-      )}
+      </Sheet>
     </header>
   );
 }

@@ -1,0 +1,6 @@
+# Project-scoped Playwright MCP. Chrome must be installed.
+[mcp_servers.playwright]
+command = "cmd.exe"
+args = ["/d", "/c", "npx.cmd", "-y", "@playwright/mcp@0.0.83", "--headless", "--isolated"]
+startup_timeout_sec = 60
+tool_timeout_sec = 60

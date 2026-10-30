@@ -1,56 +1,11 @@
-.image-zoom {
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--radius-md);
-  background: var(--color-surface-alt);
-  aspect-ratio: 1 / 1;
-  cursor: zoom-in;
-}
-
-.image-zoom img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--duration-fast) var(--ease-out);
-}
-
-.image-zoom.is-active img {
-  transform: scale(2.2);
-}
-
-.image-zoom-empty {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, var(--color-surface-alt), var(--color-line));
-}
-
-.image-zoom-hint {
-  position: absolute;
-  bottom: var(--sp-sm);
-  right: var(--sp-sm);
-  background: rgba(11, 11, 13, 0.65);
-  color: var(--color-paper);
-  font-size: var(--fs-xs);
-  padding: 0.3em 0.7em;
-  border-radius: 999px;
-  opacity: 0;
-  transition: opacity var(--duration-fast) var(--ease-out);
-  pointer-events: none;
-}
-
-.image-zoom:hover .image-zoom-hint {
-  opacity: 1;
-}
-
-.image-zoom.is-active .image-zoom-hint {
-  opacity: 0;
-}
-
-@media (hover: none) {
-  .image-zoom-hint {
-    display: none;
-  }
-  .image-zoom.is-active img {
-    transform: none;
-  }
+.image-zoom { display: block; width: 100%; border: 0; padding: 0; position: relative; overflow: hidden; background: var(--color-surface-alt); aspect-ratio: 1/1; cursor: zoom-in; }
+.image-zoom img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--t-base) var(--ease-out); }
+.image-zoom.is-active { cursor: zoom-out; }
+.image-zoom.is-active img { transform: scale(2); }
+.image-zoom-empty { width: 100%; height: 100%; }
+.image-zoom-control { position: absolute; bottom: var(--sp-md); right: var(--sp-md); width: 44px; height: 44px; display: grid; place-items: center; background: var(--color-paper); }
+.image-zoom-hint { position: absolute; left: var(--sp-md); bottom: var(--sp-md); padding: var(--sp-sm); background: var(--color-paper); font-size: var(--fs-xs); opacity: 0; transition: opacity var(--t-fast); }
+@media (hover:hover) and (pointer:fine) {
+ .image-zoom:not(.is-active):hover img { transform: scale(1.5); }
+ .image-zoom:not(.is-active):hover .image-zoom-hint { opacity: 1; }
 }

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useI18n } from '../lib/i18n/index.jsx';
 import PageHero from '../components/PageHero.jsx';
 import heroImage from '../assets/hero-1.jpg';
+import Reveal from '../components/ui/Reveal.jsx';
 import './About.css';
 
 const VALUE_KEYS = ['authenticity', 'curation', 'service'];
@@ -38,7 +39,7 @@ export default function About() {
 
       <section className="section">
         <div className="container about-story">
-          <div className="about-story-text">
+          <Reveal className="about-story-text">
             <p className="eyebrow">{t('about.story.eyebrow')}</p>
             <h2>{t('about.story.title')}</h2>
             <p>{t('about.story.p1')}</p>
@@ -57,7 +58,7 @@ export default function About() {
                 <span>{t('about.story.stat3.label')}</span>
               </div>
             </div>
-          </div>
+          </Reveal>
           <div className="about-story-media">
             <img src={STORY_IMAGE} alt="" loading="lazy" />
           </div>
@@ -93,10 +94,10 @@ export default function About() {
           </div>
           <div className="about-values-grid">
             {VALUE_KEYS.map((key) => (
-              <div className="about-value-card" key={key}>
+              <Reveal className="about-value-card" key={key}>
                 <h3>{t(`about.values.${key}.title`)}</h3>
                 <p>{t(`about.values.${key}.body`)}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

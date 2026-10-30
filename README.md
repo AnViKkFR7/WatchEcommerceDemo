@@ -7,8 +7,8 @@ MVP/demo for prospective clients of **moira ordo**.
 
 ## Stack
 
-- **Frontend**: React 18 + Vite + plain CSS (design tokens / CSS variables), React Router
-- **Backend**: Supabase (shared multi-tenant Postgres — see [BDD.sql](BDD.sql)), consumed directly from the client with the `anon` key (read-only, RLS-scoped to `status IN ('disponible','bajo_reserva')`)
+- **Frontend**: React 19 + Vite + CSS Modules para nuevos componentes y CSS (design tokens / CSS variables), React Router
+- **Backend**: Supabase (shared multi-tenant Postgres — see [BDD.sql](BDD.sql)), consultado en servidor mediante `/api/watches` y `/api/company`; la clave de servicio nunca se entrega al navegador
 - **Serverless**: one API route (`api/track.ts`) for first-party analytics ingestion, per [ANALYTICS_INTEGRATION.md](ANALYTICS_INTEGRATION.md)
 - **i18n**: ES (default) / EN, client-side dictionary, no external service
 - **Deploy target**: Vercel (assumed by the analytics integration guide)
@@ -45,7 +45,7 @@ api/
 
 ```bash
 npm install
-cp .env.example .env      # fill in Supabase project URL + anon key + company id
+cp .env.example .env      # fill in Supabase project URL + server-only service role key + company id
 npm run dev
 ```
 
@@ -61,3 +61,15 @@ npm run dev
 ## Credits
 
 Developed by **moira ordo**.
+
+## Uso y verificacion del rebranding
+
+- `npm run dev`: web local en http://localhost:5174, con endpoints del CRM.
+- `npm run build`: genera `dist` para el despliegue existente en Vercel.
+- `npm run lint`: analisis estatico.
+- `npm run test:e2e`: pruebas en Chrome a 375, 768, 1024 y 1440 px.
+- `npm run preview` sirve solo el frontend; para probar el CRM usar `npm run dev` o el despliegue con sus funciones API.
+
+Verificacion 2026-10-30: 19 pruebas aplicables correctas, 5 exclusiones por viewport. Pruebas automatizadas con fixtures; comprobacion adicional con CRM real: 13 piezas y ambos endpoints HTTP 200. Revision visual de portada, marcas, catalogo y ficha en movil y escritorio, con inspeccion adicional de tablet. Sin desbordamiento horizontal en los cuatro anchos revisados.
+
+Limites heredados de la demo: newsletter sin servicio de suscripcion, enlaces de contacto de ejemplo y analitica dependiente de `VITE_COMPANY_ID`. El catalogo y contacto por WhatsApp usan los servicios existentes. No se ha publicado esta revision. Antes de uso comercial, completar los servicios y datos de contacto de la demo.
