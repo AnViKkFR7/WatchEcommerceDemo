@@ -1,0 +1,22 @@
+.floating {
+  position: fixed;
+  right: calc(var(--sp-lg) + env(safe-area-inset-right, 0px));
+  bottom: calc(var(--sp-lg) + env(safe-area-inset-bottom, 0px));
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--color-bg);
+  color: var(--color-paper);
+  border: 1px solid var(--color-paper-soft);
+  box-shadow: var(--shadow-panel);
+  transition: background var(--t-fast), transform var(--t-fast) var(--ease-out);
+}
+.floating svg { width: 30px; height: 30px; }
+.floating:focus-visible { outline: 3px solid var(--color-gold-deep); outline-offset: 4px; }
+@media (hover: hover) and (pointer: fine) {
+  .floating:hover { background: var(--color-bg-alt); transform: translateY(-2px); }
+}
+@media (prefers-reduced-motion: reduce) { .floating { transition: none; } .floating:hover { transform: none; } }

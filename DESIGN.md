@@ -16,3 +16,5 @@ Entrada de la fotografía principal, textos visibles desde el primer pintado. Re
 Portada oscura con fotografia a sangre y tipografia superpuesta a gran escala. Destacados de distintas dimensiones y posiciones. Las ocho marcas pasan a un visor de fotografias con enlaces directos accesibles por teclado a sus filtros existentes. Transicion breve de opacidad, sin rotacion automatica. Mobile conserva el orden de lectura y controles tactiles.
 
 [P3] El nombre completo de cada marca es el enlace. Hover y foco actualizan la imagen; clic, toque o Enter navegan directamente. La fotografia es decorativa y no requiere otra accion.
+
+[P5] Movil: marcas en dos columnas con fotografia integrada en el enlace y texto sobre una sombra de contraste. Orden: marcas, atelier, destacados. Tablet y escritorio conservan el visor lateral.

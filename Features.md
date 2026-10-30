@@ -16,3 +16,7 @@
 - [P3] Cada nombre de marca abre el catálogo filtrado con una sola activación. Vista previa al pasar el ratón o enfocar; se elimina el CTA en el pie de imagen. Enlaces nativos con foco visible y activación por Enter.
 
 - [P4] Verificacion final: 19 pruebas aplicables correctas y 5 exclusiones por viewport. CRM real HTTP 200, 13 relojes. Navegacion directa por marca revisada en 375, 768, 1024 y 1440 px. Servidor local operativo y documentacion de arranque actualizada. Newsletter y contactos de ejemplo siguen siendo limitaciones heredadas de la demo.
+
+- [P5] Marcas antes de destacados. En movil, cada enlace muestra su propia fotografia con el nombre superpuesto y acceso directo en un toque; el visor independiente se conserva desde tablet.
+
+- [P6] Boton circular flotante de WhatsApp en las fichas de reloj, fijo abajo a la derecha y con margenes de zona segura. Reutiliza WhatsappCTA: mismo telefono, mensaje, idioma y evento que el CTA de disponibilidad.

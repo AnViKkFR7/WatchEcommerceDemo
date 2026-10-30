@@ -152,6 +152,28 @@ export default function Landing() {
         </div>
       </section>
 
+      <section className="section">
+        <div className="container">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">{t('brands.eyebrow')}</p>
+              <h2>{t('brands.title')}</h2>
+            </div>
+          </div>
+          <BrandExplorer brands={BRANDS} />
+        </div>
+      </section>
+
+      <section className="callout">
+        <div className="callout-media"><img src={atelierImage} alt="" loading="lazy" width="1536" height="864" /></div>
+        <div className="container callout-inner">
+          <p className="eyebrow">{t('callout.eyebrow')}</p>
+          <h2>{t('callout.title')}</h2>
+          <p className="callout-subtitle">{t('callout.subtitle')}</p>
+          <Link to="/tienda" className="btn btn-primary">{t('callout.cta')}</Link>
+        </div>
+      </section>
+
       <section className="section featured-section" id="featured">
         <div className="container">
           <div className="section-heading">
@@ -169,28 +191,6 @@ export default function Landing() {
               ? Array.from({ length: 4 }).map((_, i) => <WatchCardSkeleton key={i} />)
               : watches.map((w) => <Reveal key={w.id}><WatchCard watch={w} /></Reveal>)}
           </div>
-        </div>
-      </section>
-
-      <section className="callout">
-        <div className="callout-media"><img src={atelierImage} alt="" loading="lazy" width="1536" height="864" /></div>
-        <div className="container callout-inner">
-          <p className="eyebrow">{t('callout.eyebrow')}</p>
-          <h2>{t('callout.title')}</h2>
-          <p className="callout-subtitle">{t('callout.subtitle')}</p>
-          <Link to="/tienda" className="btn btn-primary">{t('callout.cta')}</Link>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">{t('brands.eyebrow')}</p>
-              <h2>{t('brands.title')}</h2>
-            </div>
-          </div>
-          <BrandExplorer brands={BRANDS} />
         </div>
       </section>
 

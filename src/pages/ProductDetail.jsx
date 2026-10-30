@@ -79,6 +79,7 @@ export default function ProductDetail() {
 
   return (
     <div className="product-page">
+      <WhatsappCTA watch={watch} floating />
       <div className="container product-breadcrumb">
         <Link to="/tienda">{t('product.breadcrumb.shop')}</Link>
         <span aria-hidden="true">/</span>
